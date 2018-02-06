@@ -1,10 +1,14 @@
+// This component is called a functional component. 
+// Its literally a fucntion, like swift ;) 
 
+import React, { Component } from 'react';
 
-import React from 'react';
-
-const SearchBar = () => 
+class SearchBar extends React.Component
 {
-    return <input />;
-};
+    render ()
+    {
+        return <input />;
+    }
+}
 
 export default SearchBar;
