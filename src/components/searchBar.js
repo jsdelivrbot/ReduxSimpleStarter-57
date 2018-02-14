@@ -1,13 +1,12 @@
-// This component is called a functional component. 
 
+import React from 'react';
+//import Component from 'react';
 
-import React, { Component } from 'react';
-
-class SearchBar extends Component
+class SearchBar extends React.Component
 {
-	constructor(props) 
+	constructor() 
 	{
-		super(props);
+		super();
 
 		this.state = { term: ''};
 	}

@@ -1,9 +1,10 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/searchBar';
-import VideoList from './components/videoList'
+import VideoList from './components/videoList';
+//import Component from 'react';
 
 const API_KEY = "AIzaSyAaKgvqL_uNRlt-9h5y5pV59OlC0lAAcLQ"
 
@@ -11,11 +12,11 @@ const API_KEY = "AIzaSyAaKgvqL_uNRlt-9h5y5pV59OlC0lAAcLQ"
 // Component should create HTML
 // Take the components HTML and put it on the page (in the DOM)
 
-class App extends Component 
+class App extends React.Component 
 {
-	constructor(props)
+	constructor()
 	{
-		super(props);
+		super();
 		this.state = { videos: [] };
 
 		YTSearch({key: API_KEY, term: 'surfboards'}, (videos) =>
