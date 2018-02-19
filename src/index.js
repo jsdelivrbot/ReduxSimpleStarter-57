@@ -2,40 +2,61 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
-import SearchBar from './components/searchBar';
-import VideoList from './components/videoList';
+import {SearchBar} from './components/search_bar';
+import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
+
+console.log(VideoList);
+
 //import Component from 'react';
 
 const API_KEY = "AIzaSyAaKgvqL_uNRlt-9h5y5pV59OlC0lAAcLQ"
-
-// Create a new component
-// Component should create HTML
-// Take the components HTML and put it on the page (in the DOM)
 
 class App extends React.Component 
 {
 	constructor()
 	{
 		super();
-		this.state = { videos: [] };
+		this.state = { 
+			videos: [], 
+			selectedVideo: null ,
+			term: ''
+		};
+		this.videoSearch('surfboards');
+	}
 
-		YTSearch({key: API_KEY, term: 'surfboards'}, (videos) =>
+	videoSearch(term)
+	{
+		YTSearch({key: API_KEY, term: term}, (videos) =>
 		{
-			this.setState({ videos });
+			this.setState({ 
+				videos: videos,
+				selectedVideo: videos[]
+			 });
 		});
+	}
 
+	onInputChange = (term) => 
+	{
+		this.setState({term});
 	}
 
 	render() 
 	{
 		return (
 			<div>
-				<SearchBar />
-				<VideoList videos={this.state.videos} />
+				<SearchBar onSearchTermChange={this.onInputChange} value={this.state.term} />
+				{this.state.selectedVideo && <VideoDetail video={this.state.selectedVideo}/> }
+				
+				{this.state.videos.length > 0 && <VideoList
+					onVideoSelect={video => this.state({selectedVideo})}
+				 videos={this.state.videos} />}
 			</div>
-		);
+		)
 	}
 } 
 
+const Something = props => <div>something to inject</div>
 
-ReactDOM.render(<App />, document.querySelector('.container')); 
+
+ReactDOM.render(<App />, document.querySelector('#app')); 
